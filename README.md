@@ -5,18 +5,26 @@ This program gets webhooks from Zendesk when tickets are updated.
 Upon receiving a webhook, the program checks for an attached SendSafely package.
 If one exists, the contents of the package are checked to determine if the file is a query profile.
 
-The program could also handle these files, if we can determine how to ideintify them:
+The program could also handle these files, if we can determine how to identify them:
 * query.json
 * gc.log
+* thread dump(s)
 
 ## How to install the program on your local Mac
 * Checkout the code `git clone https://github.com/rcprcp/ZendeskToProfiles.git`
 * `cd ZendeskToProfiles` 
 * `mvn clean package`  This should create a standalone jar file with all dependencies.
+* You will need to set up the following shell variables (or configure IntelliJ RUn profile) for credentials. 
+  * SENDSAFELY_API_KEY 
+  * SENDSAFELY_API_SECRET 
+  * SENDSAFELY_URL
+  * ZENDESK_USER 
+  * ZENDESK_TOKEN 
+  * ZENDESK_URL
 * `java -jar target/ZendeskToProfiles-1.0-SNAPSHOT-jar-with-dependencies.jar`
 
 ## How to test or add a feature
-These instructions are for setting up a local (on your mac) testing environment.  
+These instructions are for setting up a local (on your Mac) testing environment.  
 In this way you can use the Intellij debugger, or even use something like YourKit profiler
 in order to check the application's performance. 
 
@@ -29,6 +37,9 @@ in order to check the application's performance.
 ## ToDo list
 - [ ] Test the remaining functionality for SendSafely access and unpacking.
 - [ ] Containerize the application (preparation for deployment in Dremio Core)
+- [ ] Migrate to credential store.
+- [x] Add liveness, readyness, health check endpoints.
+- [ ] Move SendSafely code to it's own class.
 - [ ] Add additional functionality for queries.json (via dqdoctor)
 - [ ] Add additional functionality for gc.log(s) (via gceasy)
 - [ ] Add additional functionality for thread dumps (via fastthread)

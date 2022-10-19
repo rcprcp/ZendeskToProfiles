@@ -4,7 +4,7 @@ public class HealthCheck {
 
     private static HealthCheck instance;
 
-    //static block initialization for exception handling
+    //static block initialization provides exception handling
     static {
         try {
             instance = new HealthCheck();
@@ -18,7 +18,7 @@ public class HealthCheck {
     private long profilesUploaded = 0;
     private long lastProfilesUploadEpoch = 0;
     private long lastWebhookEpoch = 0;
-    private long startEpoch = System.currentTimeMillis();
+    private static final long startEpoch = System.currentTimeMillis();
 
     private HealthCheck() {
         //nothing
